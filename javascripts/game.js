@@ -25,6 +25,8 @@ const Game = {
     this.player = new Player (this.ctx, this.width, this.height,this.width/2)
     this.archer = new Archer (this.ctx,this.width/2, this.height/2)
     this.score = 0
+    this.scoreboard = ScoreBoard
+    this.scoreboard.init(this.ctx)
   },
   start: function () {
     this.reset ()
@@ -38,6 +40,7 @@ const Game = {
      this.collisions2()
      // console.log("start")
       this.generateArcher()
+      
      // if(this.archers.splice(j) this.score++
       if(this.framesCounter > 1000) this.framesCounter = 0
         this.drawAll()
@@ -56,7 +59,10 @@ const Game = {
         console.log("drawAll")
         this.archers.forEach( arc => arc.draw()) 
         console.log("drawAll") 
-        //this.drawScore()
+        this.drawScore()
+      },
+    drawScore: function() {             //con esta funcion pintamos el marcador
+    this.scoreboard.update(this.score)
       },
   moveAll: function() {
        

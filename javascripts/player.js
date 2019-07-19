@@ -63,7 +63,7 @@ class Player {
               //left no fuera pantalla
       }
       if(this.direction.ARROWRIGHT) {
-        if(this.posX+this.width<605.71999999999997){
+        if(this.posX+this.width<625){
           this.posX += 5
         }
         
