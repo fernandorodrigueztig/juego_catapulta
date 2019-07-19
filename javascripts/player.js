@@ -18,13 +18,13 @@ class Player {
       this.posX0 = this.gameWidth / 4.5
       
       this.posX = this.posX0
-      //this.posY0 = this.gameHeight * 0.98 - this.height     //Guardamos la posicion original para usarla como suelo
+      //this.posY0 = this.gameHeight * 0.98 - this.height     
       this.posY = this.gameHeight*0.82 - this.height
   
       this.velY = 1
       this.velX = 1
-      this.image.frames = 3         //Indicamos el numero de frames que tiene la imagen
-      this.image.framesIndex = 0      //Frame actual menos 1, lo usaremos para recortar la imagen en drawImage
+      this.image.frames = 3         
+      this.image.framesIndex = 0      
    
 
       this.direction = {
@@ -56,7 +56,7 @@ class Player {
     move() {
       
      //if (this.player.posX = this.wall.posX + this.wall.width){
-       
+       console.log("entra")
      
      if(this.direction.ARROWLEFT) {
         if(this.posX>30){this.posX -= 5}
@@ -69,7 +69,7 @@ class Player {
         
       }
 
-     this.balls.forEach( bullet => bullet.move())      //Movemos las balas
+     this.balls.forEach( bullet => bullet.move())      
     }
     
     animate(){ 
@@ -127,7 +127,7 @@ class Player {
   
     shoot() {
   
-      //Instanciamos nuevas balas
+      //Instanciamos nuevas bolas
      this.balls.push(new Balls(this.ctx, this.posX, this.posY, this.posY0, this.height))
       
     }

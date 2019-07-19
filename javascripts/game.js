@@ -4,8 +4,9 @@ const Game = {
     width: undefined,
     height: undefined,
     framesCounter: 0,
+    score: undefined,
     archers: [],
-    
+    found: [],
  
   init: function() {
     this.canvas = document.getElementById("canvas")
@@ -23,18 +24,21 @@ const Game = {
     
     this.player = new Player (this.ctx, this.width, this.height,this.width/2)
     this.archer = new Archer (this.ctx,this.width/2, this.height/2)
+    this.score = 0
   },
   start: function () {
     this.reset ()
     this.interval = setInterval(() =>{
       this.framesCounter ++
+      console.log(this.score)
       this.deleteBalls()
       this.clearBalls()
       this.collisionWall()
      // this.collisionArcher()
-      this.collisions2()
-      console.log("start")
+     this.collisions2()
+     // console.log("start")
       this.generateArcher()
+     // if(this.archers.splice(j) this.score++
       if(this.framesCounter > 1000) this.framesCounter = 0
         this.drawAll()
         this.moveAll()
@@ -98,21 +102,22 @@ const Game = {
     console.log("collisions2")
          for (let i = 0; i < this.player.balls.length; i++){
            for (let j = 0; j < this.archers.length; j++){
-             console.log(this.player.balls[i].posX, this.player.balls[i].w, this.player.balls[i].posY, this.player.balls[i].height)
-             console.log(this.archers[j].posX, this.archers[j].width, this.archers[j].posY, this.archers[j].height)
+            
+            
            if (this.player.balls[i].posX + this.player.balls[i].width >= this.archers[j].posX
              && this.player.balls[i].posY + this.player.balls[i].height >this.archers[j].posY
              &&this.player.balls[i].posX <=this.archers[j].posX+ this.archers[j].width
-              && this.player.balls[i].posY< this.archers[j].posY + this.archers[j].height)
+             && this.player.balls[i].posY< this.archers[j].posY + this.archers[j].height)
               {
-                console.log(this.archers[j])
-    //             this.explosion_sound.play()
+
+
                 this.archers.splice(j, 1)
-    //            this.explosion_sound.pause()
+                this.found.push(this.archers[j])
+                this.score = this.found.length
+    
            }
-    //      else {
-    //         console.log(“not detecting that obstacle was hit”)
-     //      }
+    
+     
            }
          }
      },
